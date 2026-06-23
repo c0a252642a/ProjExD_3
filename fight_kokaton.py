@@ -192,13 +192,13 @@ def main():
                 return
             for j, beam in enumerate(beams):
                 if beam is not None:
-                    if beam.rct.colliderect(bomb.rct):
+                    if bombs[i] is not None and beam.rct.colliderect(bomb.rct):
                         bird.change_img(6, screen)
                         score.score += 1
                         pg.display.update()
                         beams[j] = None
                         bombs[i] = None
-            beams = [beam for beam in beams if beam is not None]
+        beams = [beam for beam in beams if beam is not None]
         bombs = [bomb for bomb in bombs if bomb is not None]
             
         for i, beam in enumerate(beams):
