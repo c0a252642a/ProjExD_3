@@ -198,11 +198,15 @@ def main():
                         pg.display.update()
                         beams[j] = None
                         bombs[i] = None
-                        beams = [beam for beam in beams if beam is not None]
-                        bombs = [bomb for bomb in bombs if bomb is not None]
+            beams = [beam for beam in beams if beam is not None]
+        bombs = [bomb for bomb in bombs if bomb is not None]
             
-        for beam in beams:
-            beam.update(screen)
+        for i, beam in enumerate(beams):
+            if check_bound(beam.rct) != (True, True):
+                beams[i] = None
+            else:
+                beam.update(screen)
+        beams = [beam for beam in beams if beam is not None]
         for bomb in bombs:
             bomb.update(screen)
         
