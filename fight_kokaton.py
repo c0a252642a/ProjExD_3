@@ -159,6 +159,24 @@ class Score:
         screen.blit(self.img, self.rct)
 
 
+class Explosion:
+    boom_img = pg.image.load("fig/explosion.gif")
+    fliped_boom_img = pg.transform.flip(boom_img, True, True) # 上下左右反転
+    switch_img: int = 0
+    def __init__(self):
+        self.rct: pg.Rect = self.boom_img.get_rect()
+        self.rct.center = (0, 0)
+        self.boom_img_list = [__class__.boom_img, __class__.fliped_boom_img]
+        self.life = 100
+    def update(self, bomb_rct: pg.Rect, screen: pg.pg.Surface):
+        self.life -= 1
+        if self.life > 0:
+            __class__.switch_img = not __class__.switch_img
+        self.rct.center = bomb_rct.center
+        screen.blit(self.boom_img_list[self.switch_img], self.rct)
+        
+
+
 def main():
     pg.display.set_caption("たたかえ！こうかとん")
     screen = pg.display.set_mode((WIDTH, HEIGHT))    
