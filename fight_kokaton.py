@@ -208,6 +208,7 @@ def main():
             else:
                 beam.update(screen)
         beams = [beam for beam in beams if beam is not None]
+        
         for bomb in bombs:
             bomb.update(screen)
         
